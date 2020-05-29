@@ -1,4 +1,5 @@
 const ID_CARDS_SECTION = "cardsSection"
+const ID_BTN_PLAY = "bntPlay"
 
 class Screen {
 
@@ -15,7 +16,7 @@ class Screen {
 
     static changeHtmlCardContent(contentHTML){
         const content = document.getElementById(ID_CARDS_SECTION)
-        content.innerHTML = content.innerHTML + contentHTML;
+        content.innerHTML = contentHTML;
     }
 
     static buildHTMLCardsContent(itens){
@@ -25,5 +26,10 @@ class Screen {
     static renderHTMLCardsContent(itens){
         const content = Screen.buildHTMLCardsContent(itens);
         Screen.changeHtmlCardContent(content);
+    }
+
+    static configurePlayButton(onclickFunction){
+        const btnPlay = document.getElementById(ID_BTN_PLAY)
+        btnPlay.onclick = onclickFunction;
     }
 }
