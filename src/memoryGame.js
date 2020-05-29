@@ -4,31 +4,34 @@ class MemoryGame {
 
         this.initialCards = [
             {
-                img : './resources/img/harry-potter.jpg',
+                imgPath : './resources/img/harry-potter.jpg',
                 name : 'Harry Potter'
             },
             {
-                img : './resources/img/ginny.jpg',
+                imgPath : './resources/img/ginny.jpg',
                 name : 'Ginny'
             },
             {
-                img : './resources/img/hagrid.jpg',
+                imgPath : './resources/img/hagrid.jpg',
                 name : 'Hagrid'
             },
             {
-                img : './resources/img/severus.jpg',
+                imgPath : './resources/img/severus.jpg',
                 name : 'Severus'
             },
             {
-                img : './resources/img/luna.jpg',
+                imgPath : './resources/img/luna.jpg',
                 name : 'Severus'
             }, 
             {
-                img : './resources/img/fred-and-george-weasley.jpg',
+                imgPath : './resources/img/fred-and-george-weasley.jpg',
                 name : 'Severus'
             },                         
     
         ]
+
+        this.defaultCard = './resources/img/hp-logo-1.jpg'
+        this.hiddenCards = []
     }
 
     init(){
@@ -46,6 +49,20 @@ class MemoryGame {
 
         
         this.screen.renderHTMLCardsContent(copies)
+        setTimeout(() => {
+            this.hideCards(copies)
+        }, 2000);        
+    }
+
+    hideCards(cards){
+        const hiddenCards = cards.map( ({name, id}) => ({
+            id,
+            name,
+            imgPath : this.defaultCard
+        }))
+
+        this.screen.renderHTMLCardsContent(hiddenCards)
+        this.hiddenCards = hiddenCards;
     }
 
     play(){

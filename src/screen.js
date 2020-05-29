@@ -7,7 +7,7 @@ class Screen {
         return `
             <div class="col-md-3">
                 <div class="card" style="width: 50%">
-                    <img src="${item.img}" class="card-img-top" alt="...">
+                    <img src="${item.imgPath}" class="card-img-top" alt="...">
                 </div>
             </div>
             <br/>
