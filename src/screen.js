@@ -6,7 +6,7 @@ class Screen {
     static buildHtmlCardContent(item){
         return `
             <div class="col-md-3">
-                <div class="card" style="width: 50%">
+                <div class="card mg-card" style="cursor:pointer; width: 50%" onclick="window.checkCards('${item.id}', '${item.name}')">
                     <img src="${item.imgPath}" class="card-img-top" alt="...">
                 </div>
             </div>
@@ -31,5 +31,9 @@ class Screen {
     static configurePlayButton(onclickFunction){
         const btnPlay = document.getElementById(ID_BTN_PLAY)
         btnPlay.onclick = onclickFunction;
+    }
+
+    static configureCardOnclick(onclick){
+        window.checkCards = onclick;
     }
 }
