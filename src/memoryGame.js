@@ -83,7 +83,7 @@ class MemoryGame {
 
                     if(firstCard.id !== card.id){
                         this.selectedCards = [];
-                        alert(`card match !!! ${card.name}`)
+                        this.showCards(card.name);
                         return
                     } 
                   
@@ -94,6 +94,12 @@ class MemoryGame {
                 alert('sorry, try again.')
         }
 
+    }
+
+
+    showCards(cardName){
+        const {imgPath} = this.initialCards.find(({name}) => cardName === name)
+        this.screen.showCard(cardName, imgPath)
     }
 
     play(){

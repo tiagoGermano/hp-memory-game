@@ -7,7 +7,7 @@ class Screen {
         return `
             <div class="col-md-3">
                 <div class="card mg-card" style="cursor:pointer; width: 50%" onclick="window.checkCards('${item.id}', '${item.name}')">
-                    <img src="${item.imgPath}" class="card-img-top" alt="...">
+                    <img src="${item.imgPath}" name="${item.name}" class="card-img-top" alt="...">
                 </div>
             </div>
             <br/>
@@ -35,5 +35,10 @@ class Screen {
 
     static configureCardOnclick(onclick){
         window.checkCards = onclick;
+    }
+
+    static showCard(cardName, imgPath){
+        const cardElements = document.getElementsByName(cardName);
+        cardElements.forEach( card => (card.src = imgPath))
     }
 }
