@@ -1,7 +1,8 @@
 function onLoad(){
     
     const dependecies = {
-        screen : Screen
+        screen : Screen,
+        util : Util
     }
 
     const memoryGame = new MemoryGame(dependecies)

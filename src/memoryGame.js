@@ -1,6 +1,7 @@
 class MemoryGame {
-    constructor({screen}) {
+    constructor({screen, util}) {
         this.screen = screen;
+        this.util = util;
 
         this.initialCards = [
             {
@@ -41,7 +42,7 @@ class MemoryGame {
         this.screen.configureCardOnclick(this.checkCards.bind(this));
     }
 
-    shuffle(){
+    async shuffle(){
         const copies = this.initialCards
             .concat(this.initialCards)
                 .map(item => {
@@ -51,9 +52,8 @@ class MemoryGame {
 
         
         this.screen.renderHTMLCardsContent(copies)
-        setTimeout(() => {
-            this.hideCards(copies)
-        }, 2000);        
+        await this.util.timeout(2000)
+        this.hideCards(copies)
     }
 
     hideCards(cards){
