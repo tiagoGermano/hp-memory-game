@@ -84,6 +84,7 @@ class MemoryGame {
                     if(firstCard.id !== card.id){
                         this.selectedCards = [];
                         this.showCards(card.name);
+                        this.screen.showMessage();
                         return
                     } 
                   
@@ -91,7 +92,7 @@ class MemoryGame {
                 }
                 
                 this.selectedCards = [];
-                alert('sorry, try again.')
+                this.screen.showMessage(false);
         }
 
     }

@@ -1,5 +1,17 @@
 const ID_CARDS_SECTION = "cardsSection"
 const ID_BTN_PLAY = "bntPlay"
+const ID_MESSAGE_DIALOG = "dialogMessageId";
+const CLASS_INVISIBLE = "invisible";
+const MESSAGES = {
+    success : {
+        text : 'correct match !',
+        class : 'alert-success'
+    },
+    fail : {
+        text : 'fail, try again',
+        class : 'alert-danger'        
+    }
+}
 
 class Screen {
 
@@ -40,5 +52,22 @@ class Screen {
     static showCard(cardName, imgPath){
         const cardElements = document.getElementsByName(cardName);
         cardElements.forEach( card => (card.src = imgPath))
+    }
+
+    static showMessage(success = true){
+        const element = document.getElementById(ID_MESSAGE_DIALOG);
+
+        if(success){
+            element.classList.remove(MESSAGES.fail.class)
+            element.classList.add(MESSAGES.success.class)
+            element.innerHTML = MESSAGES.success.text
+
+        }else {
+            element.classList.remove(MESSAGES.success.class)
+            element.classList.add(MESSAGES.fail.class)
+            element.innerHTML = MESSAGES.fail.text
+        }
+
+        element.classList.remove(CLASS_INVISIBLE)
     }
 }
