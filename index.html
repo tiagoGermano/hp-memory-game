@@ -13,11 +13,18 @@
 </head>
 <body class="container-fluid">
     
-    <br/>
-
-    <div class="container-fluid">
+    
+    <div class="row container-fluid">
         <button id="bntPlay" type="button" class="btn btn-success">click here to play</button>
         <button id="btnShowAll" type="button" class="btn btn-danger">show all</button>
+    </div>
+    
+    <br/>
+    <div id="startGameSpinner" class="row container-fluid invisible">
+        <strong id="startGameCount">Starting in 1 ... </strong>
+        <div class="spinner-border text-warning spinner-border-sm" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>        
     </div>
     
     <div class="row container-fluid">

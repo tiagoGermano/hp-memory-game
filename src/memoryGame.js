@@ -52,8 +52,10 @@ class MemoryGame {
 
         
         this.screen.renderHTMLCardsContent(copies)
+        this.screen.showSpinner()
         await this.util.timeout(2000)
         this.hideCards(copies)
+        this.screen.showSpinner(false)
     }
 
     hideCards(cards){

@@ -1,6 +1,10 @@
+const util = Util
+
 const ID_CARDS_SECTION = "cardsSection"
 const ID_BTN_PLAY = "bntPlay"
 const ID_MESSAGE_DIALOG = "dialogMessageId";
+const ID_SPINNER = "startGameSpinner"
+const ID_SPINNER_COUNTER = "startGameCount"
 const CLASS_INVISIBLE = "invisible";
 const MESSAGES = {
     success : {
@@ -54,7 +58,7 @@ class Screen {
         cardElements.forEach( card => (card.src = imgPath))
     }
 
-    static showMessage(success = true){
+    static async showMessage(success = true){
         const element = document.getElementById(ID_MESSAGE_DIALOG);
 
         if(success){
@@ -69,5 +73,18 @@ class Screen {
         }
 
         element.classList.remove(CLASS_INVISIBLE)
+        await util.timeout(1000);
+        element.classList.add(CLASS_INVISIBLE)
+    }
+
+    static showSpinner(visible = true){
+        const element = document.getElementById(ID_SPINNER)
+        
+        if(visible){
+            element.classList.remove(CLASS_INVISIBLE);
+            return;
+        } 
+
+        element.classList.add(CLASS_INVISIBLE);
     }
 }
