@@ -28,7 +28,23 @@ class MemoryGame {
             {
                 imgPath : './resources/img/fred-and-george-weasley.jpg',
                 name : 'Fred and George Weasley'
-            },                         
+            },
+            {
+                imgPath : './resources/img/dumbledore.jpg',
+                name : 'Dumbledore'
+            },
+            {
+                imgPath : './resources/img/cedric.jpg',
+                name : 'Cedric'
+            },
+            {
+                imgPath : './resources/img/sybill.jpg',
+                name : 'Sybill'
+            },
+            {
+                imgPath : './resources/img/remus.jpg',
+                name : 'Remus'
+            },                
     
         ]
 
