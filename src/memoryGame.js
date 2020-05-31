@@ -53,7 +53,9 @@ class MemoryGame {
         
         this.screen.renderHTMLCardsContent(copies)
         this.screen.showSpinner()
-        await this.util.timeout(2000)
+        const invervalId = this.screen.startCounter();
+        await this.util.timeout(3000)
+        this.screen.stopCounter(invervalId);
         this.hideCards(copies)
         this.screen.showSpinner(false)
     }

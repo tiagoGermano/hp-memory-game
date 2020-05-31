@@ -2,6 +2,7 @@ const util = Util
 
 const ID_CARDS_SECTION = "cardsSection"
 const ID_BTN_PLAY = "bntPlay"
+const ID_SHOW_ALL = "btnShowAll"
 const ID_MESSAGE_DIALOG = "dialogMessageId";
 const ID_SPINNER = "startGameSpinner"
 const ID_SPINNER_COUNTER = "startGameCount"
@@ -86,5 +87,26 @@ class Screen {
         } 
 
         element.classList.add(CLASS_INVISIBLE);
+    }
+
+    static startCounter(){
+        let countAt = 3
+        const elementText = document.getElementById(ID_SPINNER_COUNTER)
+
+        const identifyText = "$$counter"
+        const defaultText = `Starting in ${identifyText} seconds...`
+
+        const updateText = () =>
+        (elementText.innerHTML = defaultText.replace(identifyText, countAt--))
+
+        updateText()
+        const intervalId = setInterval(updateText, 1000)
+        return intervalId;
+        
+    }
+
+    static stopCounter(intervalId){
+        clearInterval(intervalId)
+        document.getElementById(ID_SPINNER_COUNTER).innerHTML = ""
     }
 }
