@@ -3,6 +3,7 @@ class MemoryGame {
         this.screen = screen;
         this.util = util;
 
+        this.gameCards = []
         this.initialCards = [
             {
                 imgPath : './resources/img/harry-potter.jpg',
@@ -43,21 +44,24 @@ class MemoryGame {
     }
 
     async shuffle(){
-        const copies = this.initialCards
+        this.gameCards = this.initialCards
             .concat(this.initialCards)
                 .map(item => {
-                    return Object.assign({}, item, { id : Math.random() / 0.5})
+                    return Object.assign({}, item, { id : Math.random() / 0.5, facingUp : false})
                 })
                     .sort(() => Math.random() - 0.5)
 
         
-        this.screen.renderHTMLCardsContent(copies)
+        this.screen.renderHTMLCardsContent(this.gameCards)
+        this.hideCards(this.gameCards)
+        /*
         this.screen.showSpinner()
         const invervalId = this.screen.startCounter();
         await this.util.timeout(3000)
         this.screen.stopCounter(invervalId);
         this.hideCards(copies)
         this.screen.showSpinner(false)
+        */
     }
 
     hideCards(cards){
@@ -71,40 +75,49 @@ class MemoryGame {
         this.hiddenCards = hiddenCards;
     }
 
-    checkCards(id, name){
-        const card = {id, name};
-        const countOfSelectedCards = this.selectedCards.length
-
-        switch (countOfSelectedCards) {
-            case 0:
-                this.selectedCards.push(card)
-                break;
-        
-            case 1:
-                const [firstCard] = this.selectedCards;
-
-                if(firstCard.name === card.name){
-
-                    if(firstCard.id !== card.id){
-                        this.selectedCards = [];
-                        this.showCards(card.name);
-                        this.screen.showMessage();
-                        return
-                    } 
-                  
-                    return
-                }
-                
-                this.selectedCards = [];
-                this.screen.showMessage(false);
-        }
-
+    turnCards(cards){
+        cards.forEach((card) => {
+            if(card.facingUp){
+                this.screen.updateCardImage(card.id, this.defaultCard)
+            } else {
+                this.screen.updateCardImage(card.id, card.imgPath)
+            }
+    
+            card.facingUp = !card.facingUp
+        })
     }
 
+    async checkCards(id){
+        const card = this.gameCards.find((c) =>{
+            return c.id == id
+        })
+        
+        if(card.facingUp){
+            return
+        }
+        
+        
+        if(this.selectedCards.length < 2){
+            this.selectedCards.push(card)
+            this.turnCards([card])
+            if(this.selectedCards.length === 2){
+                
+                await this.util.timeout(1000)
+                if(this.cardsMatches(this.selectedCards)){
+                    this.screen.showMessage();
+                } else {
+                    this.screen.showMessage(false);
+                    this.turnCards(this.selectedCards)
+                }
+        
+                this.selectedCards = [];
+            }
 
-    showCards(cardName){
-        const {imgPath} = this.initialCards.find(({name}) => cardName === name)
-        this.screen.showCard(cardName, imgPath)
+        }
+    }
+
+    cardsMatches(cards){
+        return cards[0].name === cards[1].name && cards[0].id !== cards[1].id
     }
 
     play(){

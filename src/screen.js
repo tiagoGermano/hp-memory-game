@@ -2,7 +2,6 @@ const util = Util
 
 const ID_CARDS_SECTION = "cardsSection"
 const ID_BTN_PLAY = "bntPlay"
-const ID_SHOW_ALL = "btnShowAll"
 const ID_MESSAGE_DIALOG = "dialogMessageId";
 const ID_SPINNER = "startGameSpinner"
 const ID_SPINNER_COUNTER = "startGameCount"
@@ -23,8 +22,8 @@ class Screen {
     static buildHtmlCardContent(item){
         return `
             <div class="col-2" style="padding:5px">
-                <div class="card mg-card" style="cursor:pointer;" onclick="window.checkCards('${item.id}', '${item.name}')">
-                    <img src="${item.imgPath}" name="${item.name}" class="card-img-top" alt="...">
+                <div class="card mg-card" style="cursor:pointer;" onclick="window.checkCards('${item.id}')">
+                    <img src="${item.imgPath}" id="${item.id}" name="${item.name}" class="card-img-top">
                 </div>
             </div>
             <br/>
@@ -51,12 +50,17 @@ class Screen {
     }
 
     static configureCardOnclick(onclick){
-        window.checkCards = onclick;
+        window.checkCards = onclick
     }
 
-    static showCard(cardName, imgPath){
+    static showCards(cardName, imgPath){
         const cardElements = document.getElementsByName(cardName);
         cardElements.forEach( card => (card.src = imgPath))
+    }
+
+    static updateCardImage(cardId, imgPath){
+        const cardElement = document.getElementById(cardId)
+        cardElement.src = imgPath
     }
 
     static async showMessage(success = true){
