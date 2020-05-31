@@ -22,7 +22,7 @@ class Screen {
 
     static buildHtmlCardContent(item){
         return `
-            <div class="col-3">
+            <div class="col-2" style="padding:5px">
                 <div class="card mg-card" style="cursor:pointer;" onclick="window.checkCards('${item.id}', '${item.name}')">
                     <img src="${item.imgPath}" name="${item.name}" class="card-img-top" alt="...">
                 </div>

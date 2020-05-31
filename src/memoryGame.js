@@ -31,7 +31,7 @@ class MemoryGame {
     
         ]
 
-        this.defaultCard = './resources/img/hp-logo-1.jpg'
+        this.defaultCard = './resources/img/hp-logo-2.jpg'
         this.hiddenCards = []
         this.selectedCards = []
     }
