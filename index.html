@@ -11,30 +11,31 @@
 
     <title>Memory Game - Harry Potter</title>
 </head>
-<body class="container-fluid">
+<body>
     
+    <div class="container-fluid">
+        <div class="row">
+            <button id="bntPlay" type="button" class="btn btn-success">click here to play</button>
+            <button id="btnShowAll" type="button" class="btn btn-danger">show all</button>
+        </div>
+        
+        <br/>
+        <div id="startGameSpinner" class="row invisible">
+            <strong id="startGameCount">Starting in 1 ... </strong>
+            <div class="spinner-border text-warning spinner-border-sm" role="status">
+                <span class="sr-only">Loading...</span>
+              </div>        
+        </div>
+        
+        <div class="row">
+            <div id="dialogMessageId" class="alert alert-success invisible" role="alert">
+                Correct !!
+            </div>          
+        </div>
+        <br/>   
     
-    <div class="row container-fluid">
-        <button id="bntPlay" type="button" class="btn btn-success">click here to play</button>
-        <button id="btnShowAll" type="button" class="btn btn-danger">show all</button>
-    </div>
-    
-    <br/>
-    <div id="startGameSpinner" class="row container-fluid invisible">
-        <strong id="startGameCount">Starting in 1 ... </strong>
-        <div class="spinner-border text-warning spinner-border-sm" role="status">
-            <span class="sr-only">Loading...</span>
-          </div>        
-    </div>
-    
-    <div class="row container-fluid">
-        <div id="dialogMessageId" class="alert alert-success invisible" role="alert">
-            Correct !!
-        </div>          
-    </div>
-    <br/>   
-
-    <div id="cardsSection" class="row">       
+        <div id="cardsSection" class="row" style="width: 80%; margin: auto;">
+        </div>
     </div>
  
 </body>

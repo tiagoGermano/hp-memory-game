@@ -22,8 +22,8 @@ class Screen {
 
     static buildHtmlCardContent(item){
         return `
-            <div class="col-md-3">
-                <div class="card mg-card" style="cursor:pointer; width: 50%" onclick="window.checkCards('${item.id}', '${item.name}')">
+            <div class="col-3">
+                <div class="card mg-card" style="cursor:pointer;" onclick="window.checkCards('${item.id}', '${item.name}')">
                     <img src="${item.imgPath}" name="${item.name}" class="card-img-top" alt="...">
                 </div>
             </div>
